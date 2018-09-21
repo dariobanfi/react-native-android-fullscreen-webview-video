@@ -66,6 +66,12 @@ public class VideoWebChromeClient extends WebChromeClient {
     // Using SENSOR_LANDSCAPE to allow both landscape orientations
     mActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
 
+    // Entering fullscreen immersive mode
+    mActivity.getWindow().getDecorView()
+        .setSystemUiVisibility(View.SYSTEM_UI_FLAG_IMMERSIVE | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_FULLSCREEN);
+
     // Setting BG Color to black
     view.setBackgroundColor(Color.BLACK);
     getRootView().addView(mVideoView, FULLSCREEN_LAYOUT_PARAMS);
@@ -86,6 +92,10 @@ public class VideoWebChromeClient extends WebChromeClient {
     getRootView().removeView(mVideoView);
     // Pause HTML Videos when leaving WebView
     ((WebView) mWebView).loadUrl("javascript:document.getElementsByTagName('video')[0].pause()");
+
+    // Exiting immersive mode
+    mActivity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
 
     mVideoView = null;
     mCustomViewCallback.onCustomViewHidden();
