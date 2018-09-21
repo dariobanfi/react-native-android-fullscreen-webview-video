@@ -65,9 +65,11 @@ public class VideoWebChromeClient extends WebChromeClient {
     view.setBackgroundColor(Color.BLACK);
     // Using SENSOR_LANDSCAPE to allow both landscape orientations
     mActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
+
+    // Setting BG Color to black
+    view.setBackgroundColor(Color.BLACK);
     getRootView().addView(mVideoView, FULLSCREEN_LAYOUT_PARAMS);
 
-    // ((View) mWebView.getRootView()).setVisibility(View.GONE);
     isVideoFullscreen = true;
   }
 
@@ -76,7 +78,7 @@ public class VideoWebChromeClient extends WebChromeClient {
     if (mVideoView == null) {
       return;
     }
-    mActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+    mActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
     ((View) mWebView.getRootView()).setVisibility(View.VISIBLE);
     mVideoView.setVisibility(View.GONE);
 
