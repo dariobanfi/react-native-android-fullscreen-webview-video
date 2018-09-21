@@ -63,7 +63,8 @@ public class VideoWebChromeClient extends WebChromeClient {
     mCustomViewCallback = callback;
 
     view.setBackgroundColor(Color.BLACK);
-    mActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+    // Using SENSOR_LANDSCAPE to allow both landscape orientations
+    mActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
     getRootView().addView(mVideoView, FULLSCREEN_LAYOUT_PARAMS);
 
     // ((View) mWebView.getRootView()).setVisibility(View.GONE);
@@ -81,6 +82,9 @@ public class VideoWebChromeClient extends WebChromeClient {
 
     // Remove the custom view from its container.
     getRootView().removeView(mVideoView);
+    // Pause HTML Videos when leaving WebView
+    ((WebView) mWebView).loadUrl("javascript:document.getElementsByTagName('video')[0].pause()");
+
     mVideoView = null;
     mCustomViewCallback.onCustomViewHidden();
     isVideoFullscreen = false;
@@ -111,7 +115,7 @@ public class VideoWebChromeClient extends WebChromeClient {
    * Notifies the class that the back key has been pressed by the user. This must
    * be called from the Activity's onBackPressed(), and if it returns false, the
    * activity itself should handle it. Otherwise don't do anything.
-   * 
+   *
    * @return Returns true if the event was handled, and false if was not (video
    *         view is not visible)
    */
