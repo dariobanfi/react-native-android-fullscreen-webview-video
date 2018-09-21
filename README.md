@@ -1,5 +1,9 @@
 ## react-native-android-fullscreen-webview-video
 
+## Fork Info
+
+This fork adds a lot of improvements: immersive mode, correct orientation handling, more beautiful background, stopping html videos when leaving fullscreen
+
 ## Overview
 
 The WebView component that comes with React Native doesn't have the ability to show videos
