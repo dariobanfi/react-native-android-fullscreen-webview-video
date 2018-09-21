@@ -84,7 +84,7 @@ public class VideoWebChromeClient extends WebChromeClient {
     if (mVideoView == null) {
       return;
     }
-    mActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
+    mActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
     ((View) mWebView.getRootView()).setVisibility(View.VISIBLE);
     mVideoView.setVisibility(View.GONE);
 
